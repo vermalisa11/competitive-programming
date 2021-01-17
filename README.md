@@ -2,5 +2,5 @@
 
 Topic wise intresting question on data stucture on algorithum 
 
-*Basic recursion
-*Language tool 
+* Basic recursion
+* Language tool 
