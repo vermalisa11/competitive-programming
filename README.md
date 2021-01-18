@@ -2,11 +2,15 @@
 
 Topic wise intresting question on data stucture on algorithum 
 
-* Basic recursion
+* Basic Recursion
 * Language tool 
-* searching and sorting 
+* Modulo Arithmetic
+* Searching and Sorting 
 * Backtracking 
 * Dynamic Progamming
+* Greedy problem
+* Segment tree
+* Graphs
 
 ## languages
 * C++
