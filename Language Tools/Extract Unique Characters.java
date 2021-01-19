@@ -1,4 +1,4 @@
-Given a string S, you need to remove all the duplicates. That means, the output string should contain each character only once. The respective order of characters should remain same, as in the input string.
+/*Given a string S, you need to remove all the duplicates. That means, the output string should contain each character only once. The respective order of characters should remain same, as in the input string.
 Input format:
 The first and only line of input contains a string, that denotes the value of S.
 Output format :
@@ -13,9 +13,10 @@ abcd
 Sample Input 2 :
 abcde
 Sample Output 2 :
-abcde
+abcde*/
 
-Solution----------------------------------------------------
+//Solution----------------------------------------------------
+
 import java.util.HashMap;
 import java.util.Map;
 
