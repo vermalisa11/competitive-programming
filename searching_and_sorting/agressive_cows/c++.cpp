@@ -40,7 +40,6 @@ bool check(int cows,long long pos[],int n,long long distance){
 		return false;
 }
 
-
 int main() {
 	int t;
     cin>>t;
