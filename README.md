@@ -12,6 +12,7 @@ Topic wise interesting question on data stuctures on algorithims
 * Greedy problem
 * Segment tree
 * Graphs
+* Number Theory
 
 ## languages
 * C++
