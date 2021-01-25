@@ -46,7 +46,6 @@ int main() {
 	while(t--){
 		int n,c;
 		cin>>n>>c;
-		
 		long long pos[n];
 		for(int i=0;i<n;i++){
 			cin>>pos[i];
