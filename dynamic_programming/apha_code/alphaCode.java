@@ -24,55 +24,56 @@
 // 6
 // 89
 // 1
-//solution-----------------------------------------------------------------------------------------------------------------
-#include <bits/stdc++.h>
-#include <sstream>
-using namespace std;
-int count(int arr[],int size){
-	int mod=(int)pow(10,9)+7;
-	long long* output = new long long[size];
-    for(int i=0;i<size;i++){
-        output[i]=0;
-    }
-	output[0]=1;
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static final int mod = 1000000007;
 	
-	for(int i=1;i<size;i++){
-        int x=arr[i-1]*10+arr[i];
-		if(arr[i]!=0){
-            output[i]=output[i-1];
-        }
-        if(x>=10 && x<=26 &&i>1){
-            output[i]+=output[i-2];
-        }
-        else if(x>=10 && x<=26){
-            output[i]++;
-        }
-        output[i]=output[i]%mod;
+	static Scanner in = new Scanner(System.in);
+	public static void main(String[] args) {
+		// Write your code here
+		while(in.hasNext()){
+			String s = in.next();
+            if(s.equals("0")){
+				break;
+            }
+            int[] dp = new int[s.length()+1];
+            int[] input  = new int[s.length()];
+            for(int i = 0;i<s.length();i++){
+				input[i] = Integer.parseInt(s.charAt(i)+"");
+                dp[i]=-1;
+            }
+            dp[s.length()]=-1;
+            int ans = decodeCount(input,s.length(),dp);
+            System.out.println(ans);
+            
+         }
 	}
-	long long ans=output[size-1]%mod;
-	delete[] output;
-	return ans;
-}
+    
+    public static int decodeCount(int[] input, int n,int[] dp){
+        if(n==1){
+			return 1;
+        }
+        if(n==0){
+			return 1;
+        }
+        if(dp[n]>-1){
+			return dp[n];
+        }
+        int output = 0;
+        if(input[n-1] != 0){
+            output = decodeCount(input,n-1,dp) % mod;
+        }
+        //output = decodeCount(input,n-1,dp) % mod;
+        if(input[n-2]*10+input[n-1] <=26 && input[n-2] != 0){
+			output += decodeCount(input,n-2,dp) % mod;
+        }
+        dp[n] = output % mod;
+        return dp[n];
+        
+    }
 
-
-
-
-int main()
-{ 	
-	bool flag = true;
-	while(flag){
-		string s;
-		cin>>s;
-        if(s=="0"){
-			flag=false;
-            break;
-		}
-		int arr[s.length()];
-		for(int i=0;i<s.length();i++){
-			arr[i]=(int)s[i]-48;
-			//cout<<arr[i];
-		}
-		cout<<count(arr,s.length())<<endl;
-		
-	}
 }
