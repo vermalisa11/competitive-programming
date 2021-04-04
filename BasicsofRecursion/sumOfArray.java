@@ -1,4 +1,4 @@
-Given an array of length N, you need to find and return the sum of all elements of the array.
+/*Given an array of length N, you need to find and return the sum of all elements of the array.
 Do this recursively.
 Input Format :
 Line 1 : An Integer N i.e. size of array
@@ -17,7 +17,7 @@ Sample Input 2 :
 4 2 1
 Sample Output 2 :
 7    
-
+*/
 
 *Solution*--------------------
 public class Solution {
