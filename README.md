@@ -1,6 +1,6 @@
 # Competitive Programming
 
-Topic wise interesting question on data stuctures on algorithims
+Topic wise interesting question on data stuctures and algorithims
 
 * Basic Recursion
 * Language tool 
