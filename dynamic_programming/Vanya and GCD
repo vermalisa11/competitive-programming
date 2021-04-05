@@ -1,0 +1,76 @@
+/*Vanya and GCD
+Send Feedback
+Vanya has been studying all day long about sequences and other Complex Mathematical Terms. She thinks she has now become really good at it. So, her friend Vasya decides to test her knowledge and keeps the following challenge it front of her:
+Vanya has been given an integer array A of size N. Now, she needs to find the number of increasing sub-sequences of this array with length ≥1 and GCD=1. A sub-sequence of an array is obtained by deleting some (or none) elements and maintaining the relative order of the rest of the elements. As the answer may be large, print it Modulo 109+7
+She finds this task really easy, and thinks that you can do it too. Can you?
+Input Format:
+The first line contains a single integer N denoting size of array A. The next line contains N space separated integers denoting the elements of array A
+Output Format:
+Print the required answer Modulo 10^9+7 on a single line.
+Constraints:
+1≤N≤500
+
+1≤A[i]≤100
+Sample Input
+3
+1 2 3
+Sample Output
+5*/
+import java.util.Scanner;
+
+public class Main {
+	static final int mod = 1000000007;
+	static Scanner in = new Scanner(System.in);
+    public static void main(String[] args) {
+        // Write your code here
+        int n = in.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0;i<n;i++){
+        	arr[i] = in.nextInt();    
+		}
+        int[][] dp = new int[n][101];
+        
+        for( int i=0; i<n; i++ ) {
+            for(int j=1; j<=100;j++){
+                dp[i][j]=0;
+            }
+        }
+        dp[0][arr[0]] = 1;
+        for(int i = 1;i<n;i++){
+            dp[i][arr[i]] = 1;
+			for(int k = 0;k<i;k++){
+                if(arr[k] < arr[i]){
+                    for(int j = 1;j<=100;j++){
+                    	int g = gcd(j,arr[i]);
+                        dp[i][g] = (dp[i][g]+ (dp[k][j]%mod))%mod;
+                	}
+                }   
+            }
+        }
+        
+        
+        
+        int sum = 0;
+        for(int i = 0;i<n;i++){
+           sum = ((sum%mod) + (dp[i][1]%mod))%mod;
+        }
+        System.out.println(sum);
+    }
+    static int gcd(int a, int b)
+    {
+        // Everything divides 0
+        if (a == 0)
+            return b;
+        if (b == 0)
+            return a;
+
+        // base case
+        if (a == b)
+            return a;
+
+        // a is greater
+        if (a > b)
+            return gcd(a-b, b);
+        return gcd(a, b-a);
+    }
+}
