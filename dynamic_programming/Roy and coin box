@@ -1,0 +1,104 @@
+/*
+Roy and Coin Boxes
+Send Feedback
+Roy has N coin boxes numbered from 1 to N.
+Every day he selects two indices [L,R] and adds 1 coin to each coin box starting from L to R (both inclusive).
+He does this for M number of days.
+
+After M days, Roy has a query: How many coin boxes have atleast X coins.
+He has Q such queries.
+Input
+First line contains N - number of coin boxes.
+Second line contains M - number of days. Each of the next M lines consists of two space separated integers L and R. Followed by integer Q - number of queries.
+Each of next Q lines contain a single integer X.a
+Output
+For each query output the result in a new line.
+Constraints
+1 ≤ N ≤ 1000000
+
+1 ≤ M ≤ 1000000
+
+1 ≤ L ≤ R ≤ N
+
+1 ≤ Q ≤ 1000000
+
+1 ≤ X ≤ N
+Sample Input
+7
+4
+1 3
+2 5
+1 2
+5 6
+4
+1
+7
+4
+2
+Sample Output
+6
+0
+0
+4
+*/
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	//static Scanner in = new Scanner(System.in);
+	public static void main(String[] args) throws IOException{
+		// Write your code here
+        int n = Integer.parseInt(br.readLine());
+        int m = Integer.parseInt(br.readLine());
+        //int n = in.nextInt();
+        //int m = in.nextInt();
+        int[] dp = new int[n+1];
+        
+        for(int i = 0;i<m;i++){
+            String[] s = br.readLine().split(" ");
+            int l = Integer.parseInt(s[0]);
+            int r = Integer.parseInt(s[1]);
+            // int l = in.nextInt();
+            // int r = in.nextInt();
+            
+            dp[l]++;
+            if(r+1<=n)dp[r+1]--;
+        }
+        
+        for(int i = 2;i<=n;i++){
+            dp[i] += dp[i-1];
+        }
+        // for(int i = 1;i<=n;i++){
+        //     System.out.print(dp[i]+" ");
+        // }
+        Arrays.sort(dp);
+        // System.out.println();
+        int q = Integer.parseInt(br.readLine());
+        //int q = in.nextInt();
+        while(q-->0){
+            int x = Integer.parseInt(br.readLine());
+            //int x = in.nextInt();
+            int index = search(dp,x);
+            if(index != -1)System.out.println(n+1-index);
+            else System.out.println(0);
+        }
+	}
+    static int search(int[] arr , int x){
+        int ans = -1;
+        
+        int start = 1;
+        int end = arr.length-1;
+        while(start<=end){
+            int mid = (start+end)/2;
+            if(arr[mid]>=x){
+            	end = mid-1;
+                ans = mid;
+            }else{
+                start = mid+1;
+            }
+        }
+        return ans;
+    }
+
+}
